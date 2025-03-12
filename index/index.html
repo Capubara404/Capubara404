@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capybara</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; }
+        .slider-container {
+            position: relative;
+            background: rgb(243, 6, 184);
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+    </style>
+</head>
+<body style="background: rgb(243, 6, 184);">
+    <div class="slider-container">
+        <div class="slides">
+            <div class="slide"><img src="img/moon.png" alt=" "></div>
+            <div class="slide"><img src="img/pop.png" alt=" "></div>
+            <div class="slide"><img src="img/cloud1.png" alt=" "></div>
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+    
+    <script>
+        let index = 0;
+        function moveSlide(step) {
+            const slides = document.querySelector(".slides");
+            const totalSlides = document.querySelectorAll(".slide").length;
+            index = (index + step + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</body>
+</html>
